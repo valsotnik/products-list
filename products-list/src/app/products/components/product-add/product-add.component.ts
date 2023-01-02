@@ -1,5 +1,5 @@
 import { addProduct } from './../../store/product.actions';
-import { ProductState } from './../../store/index';
+import { ProductState } from './../../store/product.reducer';
 import { Store } from '@ngrx/store';
 import { Component, OnInit } from "@angular/core";
 import { NgForm } from "@angular/forms";
