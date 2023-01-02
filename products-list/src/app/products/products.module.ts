@@ -8,6 +8,8 @@ import { CommonModule } from "@angular/common";
 
 import { ProductsRoutingModule } from "./products-routing.module";
 import { ProductService } from "./services/product.service";
+import { StoreModule } from '@ngrx/store';
+import * as fromProductState from './store';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,16 @@ import { ProductService } from "./services/product.service";
     ProductListComponent
 
   ],
-  imports: [CommonModule, ProductsRoutingModule, FormsModule],
+  imports: [
+    CommonModule,
+    ProductsRoutingModule,
+    FormsModule,
+    StoreModule.forFeature(
+      fromProductState.productStateFeatureKey,
+      fromProductState.reducers,
+      { metaReducers: fromProductState.metaReducers }
+      )
+    ],
   providers: [ProductService],
   exports: [
     ProductComponent,

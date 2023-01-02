@@ -1,3 +1,4 @@
+import { reducers, metaReducers } from './reducers/index';
 import { ProductsModule } from './products/products.module';
 import { HomeComponent } from './pages/home/home.component';
 import { NgModule } from '@angular/core';
@@ -7,6 +8,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
+import { StoreModule } from '@ngrx/store';
 
 @NgModule({
   declarations: [ AppComponent, HomeComponent],
@@ -15,7 +17,14 @@ import { SharedModule } from './shared/shared.module';
     AppRoutingModule,
     HttpClientModule,
     SharedModule,
-    ProductsModule
+    ProductsModule,
+    StoreModule.forRoot(reducers, {
+      metaReducers,
+      runtimeChecks: {
+        strictStateImmutability: true,
+        strictActionImmutability: true
+      }
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
