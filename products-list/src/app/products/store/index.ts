@@ -10,30 +10,26 @@ import {
   on
 } from '@ngrx/store';
 import { environment } from 'src/environments/environment.prod';
+import { EntityState, EntityAdapter, createEntityAdapter} from '@ngrx/entity';
 
 export const productStateFeatureKey = 'productState';
 
-export interface ProductState {
-  products: Product[];
-  error: any
+export interface ProductState extends EntityState<Product> {
+  error: any;
 }
 
-export const initialState: ProductState = {
-  products: undefined,
+export const adapter: EntityAdapter<Product> = createEntityAdapter<Product>();
+
+export const initialState = adapter.getInitialState({
   error: undefined
-};
+});
 
 export const reducers = createReducer(
   initialState,
+  on(loadProductsSuccess, (state, action) => {return adapter.addMany(action.products, state)}),
   //@ts-ignore
-  on(loadProductsSuccess, (state, action) => {
-    return {
-      products: action.products
-    }
-  }),
   on(loadProductsFailure, (state, action) => {
     return {
-      products: state.products,
       error: action.error
     }
   })
@@ -43,8 +39,12 @@ export const selectProductsFeature = createFeatureSelector<ProductState>(product
 
 export const selectProducts = createSelector(
   selectProductsFeature,
-  (state: ProductState) => state.products
+  adapter.getSelectors().selectAll
 );
 
+export const selectError = createSelector(
+  selectProductsFeature,
+  (state: ProductState) => state.error
+);
 
 export const metaReducers: MetaReducer<ProductState>[] = !environment.production ? []: [];
