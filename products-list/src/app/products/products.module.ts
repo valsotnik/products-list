@@ -10,6 +10,8 @@ import { ProductsRoutingModule } from "./products-routing.module";
 import { ProductService } from "./services/product.service";
 import { StoreModule } from '@ngrx/store';
 import * as fromProductState from './store';
+import { EffectsModule } from '@ngrx/effects';
+import { ProductEffects } from './store/product.effects';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,8 @@ import * as fromProductState from './store';
       fromProductState.productStateFeatureKey,
       fromProductState.reducers,
       { metaReducers: fromProductState.metaReducers }
-      )
+      ),
+    EffectsModule.forFeature([ProductEffects])
     ],
   providers: [ProductService],
   exports: [
