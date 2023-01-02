@@ -1,14 +1,6 @@
 {
   "products": [
     {
-      "id": 1,
-      "name": "Gorgeous Frozen Pants",
-      "description": "Iure qui commodi occaecati qui ipsum. Natus quas cumque.",
-      "price": "395.00",
-      "imageUrl": "https://source.unsplash.com/1600x900/?product",
-      "quantity": 4670
-    },
-    {
       "id": 2,
       "name": "Rustic Steel Tuna",
       "description": "Dicta impedit voluptatem id ea officia dolorum rerum quo. Ipsam pariatur ipsum omnis.",
@@ -79,6 +71,14 @@
       "price": "457.00",
       "imageUrl": "https://source.unsplash.com/1600x900/?product",
       "quantity": 76400
+    },
+    {
+      "name": "New Test Product",
+      "description": "Test Description",
+      "price": "25.00",
+      "quantity": 100,
+      "imageUrl": "https://source.unsplash.com/1600x900/?product",
+      "id": 11
     }
   ]
 }

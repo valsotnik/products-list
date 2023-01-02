@@ -1,5 +1,5 @@
 import { environment } from './../environments/environment.prod';
-import { reducers, metaReducers } from './reducers/index';
+import { reducers, metaReducers } from './reducers';
 import { ProductsModule } from './products/products.module';
 import { HomeComponent } from './pages/home/home.component';
 import { NgModule } from '@angular/core';
