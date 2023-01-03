@@ -2,12 +2,10 @@
 import { FormsModule } from '@angular/forms';
 import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { ActivatedRoute, convertToParamMap } from '@angular/router';
-import { StoreModule, Store, select } from '@ngrx/store';
+import { Store, StoreModule } from '@ngrx/store';
 
 import { ProductEditComponent } from './product-edit.component';
-import { Product } from './../../models/products';
-import * as fromActions from '../../store/product.actions';
-import { selectedProduct } from '../../store/product.selectors';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('ProductEditComponent', () => {
   let component: ProductEditComponent;
@@ -17,6 +15,7 @@ describe('ProductEditComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
+        RouterTestingModule,
         FormsModule,
         StoreModule.forRoot({})
       ],

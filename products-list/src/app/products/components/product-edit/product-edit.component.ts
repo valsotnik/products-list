@@ -4,9 +4,8 @@ import { ProductState } from './../../store/product.reducer';
 import { select, Store } from '@ngrx/store';
 import { IProduct, Product } from './../../models/products';
 import { Component, OnInit } from "@angular/core";
-import { ProductService } from "../../services/product.service";
 
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
 import { loadProduct } from '../../store/product.actions';
 import { selectedProduct } from '../../store/product.selectors';
 
