@@ -39,22 +39,6 @@
       "price": "718.00",
       "imageUrl": "https://source.unsplash.com/1600x900/?product",
       "quantity": 66668
-    },
-    {
-      "id": 9,
-      "name": "Gorgeous Wooden Gloves",
-      "description": "Est animi praesentium culpa. Cum vel debitis ut beatae quaerat quibusdam assumenda quia.",
-      "price": "908.00",
-      "imageUrl": "https://source.unsplash.com/1600x900/?product",
-      "quantity": 88935
-    },
-    {
-      "name": "New Test Product",
-      "description": "Test Description",
-      "price": "25.00",
-      "quantity": 100,
-      "imageUrl": "https://source.unsplash.com/1600x900/?product",
-      "id": 11
     }
   ]
 }

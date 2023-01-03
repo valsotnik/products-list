@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 import { ProductState } from '../../store/product.reducer';
-import { Product } from './../../models/products';
+import { IProduct } from './../../models/products';
 
 
 import { Component, OnInit } from "@angular/core";
@@ -16,7 +16,8 @@ import { selectProducts } from '../../store/product.selectors';
   styleUrls: ["./product-list.component.scss"]
 })
 export class ProductListComponent implements OnInit {
-  products$: Observable<Product[]>
+  products$: Observable<IProduct[]>;
+  totalPrice: number;
 
   constructor(
     private productService: ProductService,
@@ -26,6 +27,9 @@ export class ProductListComponent implements OnInit {
   ngOnInit() {
     this.store.dispatch(fromActions.loadProducts());
     this.loadProducts();
+    this.products$.subscribe(products => {
+      this.totalPrice = products.reduce((acc, product) => acc + Number(product.price) * product.quantity, 0);
+    });
   }
 
   loadProducts() {
