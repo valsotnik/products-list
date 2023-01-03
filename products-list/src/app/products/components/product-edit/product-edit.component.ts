@@ -18,8 +18,6 @@ import { selectedProduct } from '../../store/product.selectors';
 export class ProductEditComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
-    private service: ProductService,
     private store: Store<ProductState>
   ) {}
   model: any = {};
