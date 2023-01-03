@@ -7,7 +7,7 @@ import { Component, OnInit } from "@angular/core";
 import { ProductService } from "../../services/product.service";
 import { Router } from "@angular/router";
 import { select, Store } from '@ngrx/store';
-import { loadProducts } from '../../store/product.actions';
+import * as fromActions from '../../store/product.actions';
 import { selectProducts } from '../../store/product.selectors';
 
 @Component({
@@ -24,7 +24,7 @@ export class ProductListComponent implements OnInit {
     private store: Store<ProductState>) {}
 
   ngOnInit() {
-    this.store.dispatch(loadProducts());
+    this.store.dispatch(fromActions.loadProducts());
     this.loadProducts();
   }
 
@@ -32,14 +32,7 @@ export class ProductListComponent implements OnInit {
     this.products$ = this.store.pipe(select(selectProducts));
   }
 
-  deleteProduct(id: number) {
-    const productsObserver = {
-      next: () => {
-        console.log("Product Deleted");
-        this.ngOnInit();
-      },
-      error: err => console.error(err)
-    };
-    this.productService.deleteProduct(id).subscribe(productsObserver);
+  deleteProduct(id: string) {
+    this.store.dispatch(fromActions.deleteProduct({ id }));
   }
 }

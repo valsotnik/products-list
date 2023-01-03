@@ -70,6 +70,21 @@ loadProduct$ = createEffect(() =>
     { dispatch: false }
   );
 
+  deleteProduct$ = createEffect(() =>
+  this.actions$.pipe(
+    ofType(fromProductActions.deleteProduct),
+    mergeMap(action =>
+      this.productService.deleteProduct(action.id).pipe(
+        map(() => fromProductActions.deleteProductSuccess({ id: action.id })),
+        catchError(error =>
+          of(fromProductActions.deleteProductFailure({ error }))
+        )
+      )
+    ),
+    tap(() => this.router.navigate(["/product/list"]))
+  )
+);
+
 
   constructor(
     private actions$: Actions,
