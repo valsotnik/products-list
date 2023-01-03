@@ -66,6 +66,7 @@ const productReducer = createReducer(
   ),
 );
 
+
 export function reducer(state: ProductState | undefined, action: Action) {
   return productReducer(state, action);
 }

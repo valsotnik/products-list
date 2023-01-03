@@ -35,13 +35,17 @@
               </div>
               <div class="form-group col-md-6">
                   <label for="productQuantity">Quantity</label>
-                  <input type="number"
-                         class="form-control"
-                         name="quantity"
-                         required
-                         [(ngModel)]="model.quantity"
-                         id="productQuantity"
-                         placeholder="Example: 100">
+                  <div class="d-flex gap-4">
+                    <button class="btn btn-primary" type="button" (click)="decrementQuantity()">-</button>
+                    <input type="number"
+                    class="form-control"
+                    name="quantity"
+                    required
+                    [(ngModel)]="model.quantity"
+                    id="productQuantity"
+                    placeholder="Example: 100">
+                    <button class="btn btn-primary" type="button" (click)="incrementQuantity()">+</button>
+                  </div>
               </div>
           </div>
           <div class="form-group">

@@ -1,14 +1,13 @@
 import { Observable } from 'rxjs';
 import { ProductState } from '../../store/product.reducer';
-import { IProduct } from './../../models/products';
+import { IProduct, Product } from './../../models/products';
 
 
 import { Component, OnInit } from "@angular/core";
-import { ProductService } from "../../services/product.service";
 import { Router } from "@angular/router";
 import { select, Store } from '@ngrx/store';
 import * as fromActions from '../../store/product.actions';
-import { selectProducts } from '../../store/product.selectors';
+import { selectedProduct, selectProducts } from '../../store/product.selectors';
 
 @Component({
   selector: "app-product-list",
@@ -20,9 +19,9 @@ export class ProductListComponent implements OnInit {
   totalPrice: number;
 
   constructor(
-    private productService: ProductService,
     public router: Router,
     private store: Store<ProductState>) {}
+    model: any = {};
 
   ngOnInit() {
     this.store.dispatch(fromActions.loadProducts());
@@ -30,6 +29,12 @@ export class ProductListComponent implements OnInit {
     this.products$.subscribe(products => {
       this.totalPrice = products.reduce((acc, product) => acc + Number(product.price) * product.quantity, 0);
     });
+
+    this.store
+    .pipe(select(selectedProduct))
+    .subscribe(
+      product => (this.model = Object.assign(new Product(), product))
+    );
   }
 
   loadProducts() {
