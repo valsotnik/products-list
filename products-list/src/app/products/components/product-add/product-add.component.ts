@@ -18,13 +18,5 @@ export class ProductAddComponent implements OnInit {
 
   onSubmit(f: NgForm) {
     this.store.dispatch(addProduct({product: f.value}))
-    // const productObserver = {
-    //   next: product => (
-    //     this.router.navigate(["/product/list"]), console.log("success")
-    //   ),
-    //   error: err => console.error(err)
-    // };
-
-    // this.productService.createProduct(f.value).subscribe(productObserver);
   }
 }
