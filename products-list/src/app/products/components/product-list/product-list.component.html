@@ -8,10 +8,11 @@
         (click)="navigateToAddPage()">
           Add New Product <i class="fas fa-plus"></i>
       </button>
-      <div class="total-price">Total: {{ totalPrice | currency }}</div>
+      <div class="total-price font-weight-bold display-6">Total: {{ totalPrice | currency }}</div>
     </div>
     <div class="row">
-      <div
+      <ng-container *ngIf="(products$ | async)?.length; else NoProducts">
+        <div
         class="col-lg-4 col-md-6 mt-3"
         *ngFor="let product of products$ | async">
         <div class="card">
@@ -53,6 +54,18 @@
           </div>
         </div>
       </div>
+      </ng-container>
+
+
     </div>
   </div>
 </div>
+
+
+<ng-template #NoProducts>
+  <p class="d-flex justify-content-center mt-4 display-5 font-weight-bold">
+    No products to display. <br>
+    Please, add new product by click on button 'Add New Product'
+  </p>
+</ng-template>
+

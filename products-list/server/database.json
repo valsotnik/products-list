@@ -1,36 +1,28 @@
 {
   "products": [
     {
-      "id": 3,
-      "name": "Awesome Soft Hat",
-      "description": "Hic ea sint alias eum quis aut aut. Rerum animi sed.",
-      "price": "2444",
-      "imageUrl": "https://source.unsplash.com/1600x900/?product",
-      "quantity": 167
-    },
-    {
-      "id": 7,
-      "name": "Tasty Wooden Computer",
-      "description": "Saepe fugit impedit aperiam. Aut dolorem nesciunt necessitatibus reiciendis iure est expedita ad.",
-      "price": "64",
-      "imageUrl": "https://source.unsplash.com/1600x900/?product",
-      "quantity": 43
-    },
-    {
-      "name": "brand new product",
-      "description": "asdsadad",
+      "name": "asdasd",
+      "description": "asdasd",
       "price": "33",
-      "quantity": 33,
+      "quantity": 15,
       "imageUrl": "https://source.unsplash.com/1600x900/?product",
-      "id": 17
+      "id": 1
     },
     {
-      "name": "new one item",
-      "description": "zcsdcsd",
-      "price": "45",
-      "quantity": 32,
+      "name": "asdsadsad",
+      "description": "asdasd",
+      "price": "343",
+      "quantity": 2339,
       "imageUrl": "https://source.unsplash.com/1600x900/?product",
-      "id": 18
+      "id": 2
+    },
+    {
+      "name": "wefscaasd",
+      "description": "asdwqd",
+      "price": "32",
+      "quantity": 23,
+      "imageUrl": "https://source.unsplash.com/1600x900/?product",
+      "id": 3
     }
   ]
 }

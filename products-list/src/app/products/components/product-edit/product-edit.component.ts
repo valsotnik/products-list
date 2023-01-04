@@ -3,7 +3,7 @@ import { deleteProduct, updateProduct } from './../../store/product.actions';
 import { ProductState } from './../../store/product.reducer';
 import { select, Store } from '@ngrx/store';
 import { IProduct, Product } from './../../models/products';
-import { ChangeDetectionStrategy, Component, OnInit, Self } from "@angular/core";
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, Self } from "@angular/core";
 import { takeUntil } from 'rxjs/operators';
 
 import { ActivatedRoute, Router } from "@angular/router";
@@ -27,6 +27,7 @@ export class ProductEditComponent implements OnInit {
     private route: ActivatedRoute,
     private store: Store<ProductState>,
     private router: Router,
+    private cdr: ChangeDetectorRef
   ) {}
 
   public ngOnInit() {
@@ -42,12 +43,13 @@ export class ProductEditComponent implements OnInit {
         product => {
           this.product = product;
           this.model = Object.assign(new Product(), product);
+          this.cdr.detectChanges();
         }
       );
   }
 
   public incrementQuantity(): void {
-    this.model.quantity = this.model.quantity + 1;
+    this.model.quantity = +this.model.quantity + 1;
   }
 
   public decrementQuantity(): void {
