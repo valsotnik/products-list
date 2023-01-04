@@ -48,13 +48,13 @@
                 <span>-</span>
             </button>
             <input
-              type="number"
               class="form-control"
               name="quantity"
               required
               [(ngModel)]="model.quantity"
               id="productQuantity"
-              placeholder="Example: 100">
+              placeholder="Example: 100"
+              pattern="[0-9]+">
             <button
               class="btn btn-primary"
               type="button"

@@ -46,6 +46,9 @@ export class ProductEditComponent implements OnInit {
           this.cdr.detectChanges();
         }
       );
+
+
+
   }
 
   public incrementQuantity(): void {
