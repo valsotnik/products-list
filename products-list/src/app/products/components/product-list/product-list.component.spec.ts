@@ -1,12 +1,13 @@
 /* tslint:disable:no-unused-variable */
 import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { StoreModule, Store, select } from '@ngrx/store';
+import { StoreModule, Store } from '@ngrx/store';
 
 import { ProductListComponent } from './product-list.component';
 import { ProductService } from '../../services/product.service';
 import * as fromActions from '../../store/product.actions';
 import { HttpClient, HttpHandler } from '@angular/common/http';
+import { productReducer } from './../../store/product.reducer';
 
 describe('ProductListComponent', () => {
   let component: ProductListComponent;
@@ -18,9 +19,13 @@ describe('ProductListComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-        StoreModule.forRoot({})
+        StoreModule.forRoot({products: productReducer})
       ],
-      providers: [ProductService, HttpClient, HttpHandler],
+      providers: [
+        ProductService,
+        HttpClient,
+        HttpHandler,
+      ],
       declarations: [ProductListComponent]
     });
 
@@ -34,21 +39,15 @@ describe('ProductListComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  // it('should dispatch a loadProducts action on init', () => {
-  //   spyOn(store, 'dispatch');
-
-  //   component.ngOnInit();
-
-  //   expect(store.dispatch).toHaveBeenCalledWith(fromActions.loadProducts());
-  // });
-
-  it('should delete a product', () => {
-    spyOn(store, 'dispatch');
-
-    component.deleteProduct('123');
-
-    expect(store.dispatch).toHaveBeenCalledWith(
-      fromActions.deleteProduct({ id: '123' })
-    );
+  it('should dispatch a loadProducts action on init', () => {
+    spyOn(store, 'dispatch').and.callThrough();
+    component.ngOnInit();
+    expect(store.dispatch).toHaveBeenCalledWith(fromActions.loadProducts());
   });
+
+  it('should call the deleteProduct action on the store when deleteProduct is called', () => {
+    spyOn(store, 'dispatch').and.callThrough();
+    component.deleteProduct('1');
+    expect(store.dispatch).toHaveBeenCalledWith(fromActions.deleteProduct({ id: '1' }));
+  })
 });
