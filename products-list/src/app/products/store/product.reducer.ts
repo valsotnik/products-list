@@ -17,11 +17,8 @@ export const initialState: ProductState = adapter.getInitialState({
   selectedProduct: undefined
 });
 
-export const productReducer = createReducer(
+const productReducer = createReducer(
   initialState,
-  on(ProductActions.addProduct, (state, action) =>
-    adapter.addOne(action.product, state)
-  ),
   on(ProductActions.addProductSuccess, (state, action) =>
     adapter.addOne(action.product, state)
   ),

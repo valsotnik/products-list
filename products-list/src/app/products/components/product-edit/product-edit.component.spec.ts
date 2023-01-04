@@ -6,7 +6,7 @@ import { Store, StoreModule } from '@ngrx/store';
 
 import { ProductEditComponent } from './product-edit.component';
 import { RouterTestingModule } from '@angular/router/testing';
-import { productReducer } from '../../store/product.reducer';
+import { reducer } from '../../store/product.reducer';
 import * as fromActions from '../../store/product.actions';
 
 describe('ProductEditComponent', () => {
@@ -19,7 +19,7 @@ describe('ProductEditComponent', () => {
       imports: [
         RouterTestingModule,
         FormsModule,
-        StoreModule.forRoot({products: productReducer})
+        StoreModule.forRoot({products: reducer})
       ],
       providers: [
         {

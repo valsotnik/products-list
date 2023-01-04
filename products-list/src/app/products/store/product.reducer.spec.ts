@@ -16,13 +16,6 @@ describe('Product Reducer', () => {
     };
   });
 
-  it('should handle the addProduct action', () => {
-    const product: IProduct = PRODUCT_MOCK;
-    const newState = reducer(initialState, fromActions.addProduct({ product }));
-    expect(newState.ids).toContain(product.id);
-    expect(newState.entities[product.id]).toEqual(product);
-  });
-
   it('should handle the addProductSuccess action', () => {
     const product: IProduct = PRODUCT_MOCK;
     const newState = reducer(initialState, fromActions.addProductSuccess({ product }));
@@ -61,36 +54,6 @@ describe('Product Reducer', () => {
   it('should handle the loadProductFailure action', () => {
     const error = 'An error occurred';
     const newState = reducer(initialState, fromActions.loadProductFailure({ error }));
-    expect(newState).toEqual({ ...initialState, error });
-  });
-
-  it('should handle the addProduct action', () => {
-    const product: IProduct = PRODUCT_MOCK;
-    const newState = reducer(initialState, fromActions.addProduct({ product }));
-    expect(newState).toEqual(adapter.addOne(product, initialState));
-  });
-
-  it('should handle the addProductSuccess action', () => {
-    const product: IProduct = PRODUCT_MOCK;
-    const newState = reducer(initialState, fromActions.addProductSuccess({ product }));
-    expect(newState).toEqual(adapter.addOne(product, initialState));
-  });
-
-    it('should handle the addProductFailure action', () => {
-    const error = 'An error occurred';
-    const newState = reducer(initialState, fromActions.addProductFailure({ error }));
-    expect(newState).toEqual({ ...initialState, error });
-  });
-
-  it('should handle the loadProductsSuccess action', () => {
-    const products: IProduct[] = PRODUCTS_ARRAY_MOCK;
-    const newState = reducer(initialState, fromActions.loadProductsSuccess({ products }));
-    expect(newState).toEqual(adapter.addMany(products, initialState));
-  });
-
-    it('should handle the loadProductsFailure action', () => {
-    const error = 'An error occurred';
-    const newState = reducer(initialState, fromActions.loadProductsFailure({ error }));
     expect(newState).toEqual({ ...initialState, error });
   });
 

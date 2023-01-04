@@ -7,7 +7,7 @@ import { ProductListComponent } from './product-list.component';
 import { ProductService } from '../../services/product.service';
 import * as fromActions from '../../store/product.actions';
 import { HttpClient, HttpHandler } from '@angular/common/http';
-import { productReducer } from './../../store/product.reducer';
+import { reducer } from './../../store/product.reducer';
 
 describe('ProductListComponent', () => {
   let component: ProductListComponent;
@@ -19,7 +19,7 @@ describe('ProductListComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-        StoreModule.forRoot({products: productReducer})
+        StoreModule.forRoot({products: reducer})
       ],
       providers: [
         ProductService,
