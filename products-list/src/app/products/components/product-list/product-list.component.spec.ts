@@ -1,5 +1,5 @@
 /* tslint:disable:no-unused-variable */
-import { TestBed, ComponentFixture } from '@angular/core/testing';
+import { TestBed, ComponentFixture, fakeAsync, tick } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { StoreModule, Store } from '@ngrx/store';
 
@@ -8,6 +8,7 @@ import { ProductService } from '../../services/product.service';
 import * as fromActions from '../../store/product.actions';
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { reducer } from './../../store/product.reducer';
+import { Router } from '@angular/router';
 
 describe('ProductListComponent', () => {
   let component: ProductListComponent;
@@ -49,5 +50,14 @@ describe('ProductListComponent', () => {
     spyOn(store, 'dispatch').and.callThrough();
     component.deleteProduct('1');
     expect(store.dispatch).toHaveBeenCalledWith(fromActions.deleteProduct({ id: '1' }));
-  })
+  });
+
+  it('should navigate to the Add Product page', () => {
+    const router = TestBed.inject(Router);
+    const navigateSpy = spyOn(router, 'navigate');
+
+    component.navigateToAddPage();
+
+    expect(navigateSpy).toHaveBeenCalledWith(['product/add']);
+  });
 });

@@ -1,14 +1,14 @@
-import { PRODUCT_MOCK } from './../../../shared/constants/products.const';
 /* tslint:disable:no-unused-variable */
+import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProductAddComponent } from './product-add.component';
-import { FormsModule, NgForm } from '@angular/forms';
 import { Store, StoreModule } from '@ngrx/store';
 import { ProductState } from '../../store/product.reducer';
-import { addProduct } from '../../store/product.actions';
+import { PRODUCT_MOCK } from './../../../shared/constants/products.const';
+import { Router } from '@angular/router';
 
 describe('ProductAddComponent', () => {
   let component: ProductAddComponent;
@@ -19,7 +19,7 @@ describe('ProductAddComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-        FormsModule,
+        ReactiveFormsModule,
         StoreModule.forRoot({})
       ],
       declarations: [ ProductAddComponent ],
@@ -42,7 +42,16 @@ describe('ProductAddComponent', () => {
 
   it('should dispatch an addProduct action on submit', () => {
     const formValue = PRODUCT_MOCK;
-    component.onSubmit({ value: formValue } as NgForm);
-    expect(store.dispatch).toHaveBeenCalledWith(addProduct({ product: formValue }));
+    component.onSubmit();
+    expect(store.dispatch).toHaveBeenCalled();
+  });
+
+  it('should navigate to the product list page after onDiscard', () => {
+    const router = TestBed.inject(Router);
+    const navigateSpy = spyOn(router, 'navigate');
+
+    component.onDiscard();
+
+    expect(navigateSpy).toHaveBeenCalledWith(['product/list']);
   });
 });

@@ -2,28 +2,27 @@ import * as fromActions from '../../store/product.actions';
 import { ProductState } from './../../store/product.reducer';
 import { Store, select } from '@ngrx/store';
 import { Product } from './../../models/products';
-import { Component, OnInit } from "@angular/core";
+import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
-import { ProductService } from "../../services/product.service";
-import { Observable, pipe } from "rxjs";
+import { Observable } from "rxjs";
 import { selectedProduct } from '../../store/product.selectors';
 
 @Component({
   selector: "app-product",
   templateUrl: "./product.component.html",
-  styleUrls: ["./product.component.scss"]
+  styleUrls: ["./product.component.scss"],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductComponent implements OnInit {
-  product$: Observable<Product>;
+  public product$: Observable<Product>;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private service: ProductService,
     private store: Store<ProductState>
   ) {}
 
-  ngOnInit() {
+  public ngOnInit() {
     this.store.dispatch(
       fromActions.loadProduct({ id: this.route.snapshot.paramMap.get("id")})
     );
@@ -31,7 +30,11 @@ export class ProductComponent implements OnInit {
     this.product$ = this.store.pipe(select(selectedProduct));
   }
 
-  deleteProduct(id: string) {
+  public deleteProduct(id: string) {
     this.store.dispatch(fromActions.deleteProduct({ id }));
   }
+
+  public navigateToListPage(): void {
+		void this.router.navigate(['product/list']);
+	}
 }

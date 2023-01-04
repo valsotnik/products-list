@@ -1,7 +1,7 @@
 /* tslint:disable:no-unused-variable */
 import { FormsModule } from '@angular/forms';
 import { TestBed, ComponentFixture } from '@angular/core/testing';
-import { ActivatedRoute, convertToParamMap } from '@angular/router';
+import { ActivatedRoute, convertToParamMap, Router } from '@angular/router';
 import { Store, StoreModule } from '@ngrx/store';
 
 import { ProductEditComponent } from './product-edit.component';
@@ -64,6 +64,15 @@ describe('ProductEditComponent', () => {
     component.product = { id: 1, name: 'Test Product', description: 'Product 1 Description', price: '10', imageUrl: 'https://source.unsplash.com/1600x900/?product', quantity: 0 };
     component.onSubmit();
     expect(store.dispatch).toHaveBeenCalled();
+  });
+
+  it('should navigate to the product list page', () => {
+    const router = TestBed.inject(Router);
+    const navigateSpy = spyOn(router, 'navigate');
+
+    component.onDiscard();
+
+    expect(navigateSpy).toHaveBeenCalledWith(['product/list']);
   });
 });
 

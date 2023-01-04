@@ -6,6 +6,7 @@ import { DebugElement } from '@angular/core';
 import { HeaderComponent } from './header.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { StoreModule } from '@ngrx/store';
+import { Router } from '@angular/router';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -30,5 +31,23 @@ describe('HeaderComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should navigate to the product list page', () => {
+    const router = TestBed.inject(Router);
+    const navigateSpy = spyOn(router, 'navigate');
+
+    component.navigateToListPage();
+
+    expect(navigateSpy).toHaveBeenCalledWith(['product/list']);
+  });
+
+  it('should navigate to the main page', () => {
+    const router = TestBed.inject(Router);
+    const navigateSpy = spyOn(router, 'navigate');
+
+    component.navigateToMainPage();
+
+    expect(navigateSpy).toHaveBeenCalledWith(['']);
   });
 });
