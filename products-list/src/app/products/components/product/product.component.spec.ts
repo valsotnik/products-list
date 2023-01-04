@@ -20,7 +20,6 @@ describe('ProductComponent', () => {
         RouterTestingModule,
         FormsModule,
         StoreModule.forRoot({products: productReducer}),
-
       ],
       declarations: [ ProductComponent ],
       providers: [ HttpHandler, HttpClient]
